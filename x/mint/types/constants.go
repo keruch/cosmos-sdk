@@ -11,8 +11,11 @@ const (
 	hoursPerDay          = 24
 	daysPerYear          = 365.2425
 
-	secondsPerYear     = int64(secondsPerMinute * minutesPerHour * hoursPerDay * daysPerYear)                        // 31,556,952
-	nanosecondsPerYear = int64(nanosecondsPerSecond * secondsPerMinute * minutesPerHour * hoursPerDay * daysPerYear) // 31,556,952,000,000,000
+	secondsPerYear = int64(secondsPerMinute * minutesPerHour * hoursPerDay * daysPerYear) // 31,556,952
+	//nanosecondsPerYear = int64(nanosecondsPerSecond * secondsPerMinute * minutesPerHour * hoursPerDay * daysPerYear) // 31,556,952,000,000,000
+
+	// now it's one minute
+	nanosecondsPerYear = int64(nanosecondsPerSecond * secondsPerMinute * 1) // 31,556,952,000,000,000
 )
 
 var (

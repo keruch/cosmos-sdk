@@ -40,7 +40,7 @@ func TestInflationRate(t *testing.T) {
 		{year: 17, expected: math.LegacyNewDecWithPrec(15, 3)},                // 1.50%
 	}
 
-	for i, tc := range tests {
+	for _, tc := range tests {
 		tc := tc
 		name := fmt.Sprintf("Year %d", tc.year)
 
@@ -52,35 +52,7 @@ func TestInflationRate(t *testing.T) {
 
 			diff := inflation.Sub(tc.expected)
 
-			require.True(t, inflation.Equal(tc.expected), "Test Index: %v\nDiff:  %v\nExpected: %v\n", i, diff, tc.expected)
+			require.True(t, inflation.Equal(tc.expected), "Diff:  %v\nExpected: %v\n", diff, tc.expected)
 		})
 	}
 }
-
-//func TestBlockProvision(t *testing.T) {
-//	minter := InitialMinter(math.LegacyNewDecWithPrec(1, 1))
-//	params := DefaultParams()
-//
-//	secondsPerYear := int64(60 * 60 * 8766)
-//
-//	tests := []struct {
-//		annualProvisions int64
-//		expProvisions    int64
-//	}{
-//		{secondsPerYear / 5, 1},
-//		{secondsPerYear/5 + 1, 1},
-//		{(secondsPerYear / 5) * 2, 2},
-//		{(secondsPerYear / 5) / 2, 0},
-//	}
-//	for i, tc := range tests {
-//		minter.AnnualProvisions = math.LegacyNewDec(tc.annualProvisions)
-//		provisions := minter.BlockProvision(params)
-//
-//		expProvisions := sdk.NewCoin(params.MintDenom,
-//			math.NewInt(tc.expProvisions))
-//
-//		require.True(t, expProvisions.IsEqual(provisions),
-//			"test: %v\n\tExp: %v\n\tGot: %v\n",
-//			i, tc.expProvisions, provisions)
-//	}
-//}
